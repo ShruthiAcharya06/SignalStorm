@@ -1,5 +1,8 @@
 package com.merchant.algo;
 
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class Algo {
 
     public static void main(String args[]) {

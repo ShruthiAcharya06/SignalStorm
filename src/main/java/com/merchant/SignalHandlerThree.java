@@ -25,6 +25,7 @@ public class SignalHandlerThree implements SignalHandler {
         algo.performCalc();
         algo.submitToMarket();
         algo.doAlgo();
+
     }
 
     private void setParams() {
