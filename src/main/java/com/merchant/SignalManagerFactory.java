@@ -2,26 +2,32 @@ package com.merchant;
 
 import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class SignalManagerFactory {
 
-    private Algo algo;
+    private final Algo algo;
 
+    private final Map<Integer, SignalHandler> signalHandlerMap;
+
+    @Autowired
     public SignalManagerFactory(Algo algo) {
         this.algo = algo;
+        this.signalHandlerMap = new HashMap<>();
+        initializeHandlerMap();
+    }
+
+    private void initializeHandlerMap() {
+        signalHandlerMap.put(1, new SignalHandlerOne(algo));
+        signalHandlerMap.put(2, new SignalHandlerTwo(algo));
+        signalHandlerMap.put(3, new SignalHandlerThree(algo));
     }
 
     public SignalHandler create(int signal) {
-        if (signal == 1) {
-            return new SignalHandlerOne(algo);
-        } else if (signal == 2) {
-            return new SignalHandlerTwo(algo);
-        } else if (signal == 3) {
-            return new SignalHandlerThree(algo);
-        } else {
-            return new DefaultSignalHandler(algo);
-        }
+        return signalHandlerMap.getOrDefault(signal, new DefaultSignalHandler(algo));
     }
 }

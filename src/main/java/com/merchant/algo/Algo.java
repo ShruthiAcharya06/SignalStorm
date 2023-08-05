@@ -1,13 +1,9 @@
 package com.merchant.algo;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class Algo {
-
-    public static void main(String args[]) {
-        System.out.print("Hello World");
-    }
 
     public void doAlgo() {
         System.out.println("doAlgo");

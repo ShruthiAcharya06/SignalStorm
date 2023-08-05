@@ -2,7 +2,10 @@ package com.merchant;
 
 import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SignalHandlerThree implements SignalHandler {
 
     private static final Integer PARAM_TYPE_1_1 = 1;
@@ -14,7 +17,7 @@ public class SignalHandlerThree implements SignalHandler {
     private static final Integer PARAM_VALUE_TYPE_1_2 = 15;
 
     private final Algo algo;
-
+@Autowired
     public SignalHandlerThree(Algo algo) {
         this.algo = algo;
     }
