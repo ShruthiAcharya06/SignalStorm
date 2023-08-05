@@ -1,6 +1,7 @@
-package com.merchant;
+package com.merchant.impl;
 
 import com.merchant.algo.Algo;
+import com.merchant.impl.SignalHandlerTwo;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

@@ -2,6 +2,10 @@ package com.merchant;
 
 import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
+import com.merchant.impl.DefaultSignalHandler;
+import com.merchant.impl.SignalHandlerOne;
+import com.merchant.impl.SignalHandlerThree;
+import com.merchant.impl.SignalHandlerTwo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.HashMap;

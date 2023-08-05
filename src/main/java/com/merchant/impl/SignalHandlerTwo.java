@@ -1,4 +1,4 @@
-package com.merchant;
+package com.merchant.impl;
 
 import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
