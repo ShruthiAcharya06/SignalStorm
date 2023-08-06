@@ -14,9 +14,8 @@ import org.springframework.stereotype.Service;
 public class SignalHandlerService {
 
     private final ApplicationContext applicationContext;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(SignalHandlerService.class);
-
+    private static final String SIGNAL_HANDLER = "signalHandler";
     private final Algo algo;
 
     @Autowired
@@ -27,15 +26,14 @@ public class SignalHandlerService {
 
     public void handleSignal(int signal) {
         SignalHandler signalHandler = null;
-        String beanName = "signalHandler" + signal;
+        String beanName = SIGNAL_HANDLER + signal;
         try {
             signalHandler = applicationContext.getBean(beanName, SignalHandler.class);
         } catch (NoSuchBeanDefinitionException e) {
             if (signalHandler == null) {
-                LOGGER.warn("Signal Bean is not defined running default algo. {}", e.getMessage());
+                LOGGER.warn("Signal Bean is not defined.. running default algo. {}", e.getMessage());
                 signalHandler = new DefaultSignalHandler(algo);
             }
-
         }
         signalHandler.handleSignal(signal);
     }

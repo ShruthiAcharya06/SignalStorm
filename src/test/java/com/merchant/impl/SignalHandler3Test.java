@@ -10,9 +10,7 @@ import org.mockito.MockitoAnnotations;
 public class SignalHandler3Test {
     @Mock
     private Algo algo;
-
     private SignalHandler3 classUnderTest;
-
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);

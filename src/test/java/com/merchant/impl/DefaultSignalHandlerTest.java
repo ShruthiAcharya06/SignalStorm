@@ -10,7 +10,6 @@ import org.mockito.MockitoAnnotations;
 public class DefaultSignalHandlerTest {
     @Mock
     private Algo algo;
-
     private DefaultSignalHandler classUnderTest;
 
     @Before
@@ -27,7 +26,5 @@ public class DefaultSignalHandlerTest {
         Mockito.verify(algo).cancelTrades();
         Mockito.verify(algo).doAlgo();
         Mockito.verifyNoMoreInteractions(algo);
-
     }
-
 }

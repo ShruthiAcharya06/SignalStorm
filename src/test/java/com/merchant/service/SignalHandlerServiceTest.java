@@ -2,6 +2,8 @@ package com.merchant.service;
 
 import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
+import com.merchant.impl.DefaultSignalHandler;
+import com.merchant.impl.SignalHandler1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,18 +20,15 @@ public class SignalHandlerServiceTest {
 
     @MockBean
     private Algo algo;
-
     @Mock
-    private SignalHandler signalHandler;
-
+    private SignalHandler1 signalHandler1;
     @Mock
     private ApplicationContext applicationContext;
-
     private SignalHandlerService classUnderTest;
 
     @BeforeEach
     public void setup() {
-        when(applicationContext.getBean("signalHandler1", SignalHandler.class)).thenReturn(signalHandler);
+        when(applicationContext.getBean("signalHandler1", SignalHandler.class)).thenReturn(signalHandler1);
         when(applicationContext.getBean("signalHandler10", SignalHandler.class)).thenThrow(NoSuchBeanDefinitionException.class);
         classUnderTest = new SignalHandlerService(applicationContext, algo);
     }
@@ -39,8 +38,7 @@ public class SignalHandlerServiceTest {
         //when
         classUnderTest.handleSignal(1);
         //then
-        verify(signalHandler).handleSignal(1);
-
+        verify(signalHandler1).handleSignal(1);
     }
 
     @Test

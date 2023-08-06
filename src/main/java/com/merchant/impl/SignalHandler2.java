@@ -2,6 +2,8 @@ package com.merchant.impl;
 
 import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -9,11 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Qualifier("signal2")
 public class SignalHandler2 implements SignalHandler {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(SignalHandler2.class);
     private static final Integer PARAM_TYPE_1 = 1;
-
     private static final Integer PARAM_VALUE_TYPE_1 = 80;
-
     private final Algo algo;
 
     @Autowired
@@ -25,5 +25,6 @@ public class SignalHandler2 implements SignalHandler {
         algo.setAlgoParam(PARAM_TYPE_1, PARAM_VALUE_TYPE_1);
         algo.submitToMarket();
         algo.doAlgo();
+        LOGGER.info("Handled Signal {} successfully", signal);
     }
 }

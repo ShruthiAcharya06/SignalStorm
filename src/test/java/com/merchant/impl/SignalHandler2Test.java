@@ -25,12 +25,10 @@ public class SignalHandler2Test {
         classUnderTest.handleSignal(2);
         //then
         Mockito.verify(algo).setAlgoParam(1, 80);
-
         Mockito.verify(algo).submitToMarket();
         Mockito.verify(algo).doAlgo();
         Mockito.verify(algo).reverse();
         Mockito.verifyNoMoreInteractions(algo);
-
     }
 
 }

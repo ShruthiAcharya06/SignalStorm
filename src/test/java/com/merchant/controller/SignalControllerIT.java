@@ -18,10 +18,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class SignalControllerIT {
-
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private SignalHandlerService signalHandlerService;
 
@@ -32,7 +30,5 @@ public class SignalControllerIT {
                 .param("signal", "1"))
             .andExpect(status().isOk())
             .andExpect(content().string("Signal Handled Successfully"));
-
     }
-
 }

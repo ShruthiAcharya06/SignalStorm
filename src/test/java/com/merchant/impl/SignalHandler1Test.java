@@ -10,7 +10,6 @@ import org.mockito.MockitoAnnotations;
 public class SignalHandler1Test {
     @Mock
     private Algo algo;
-
     private SignalHandler1 classUnderTest;
 
     @Before
@@ -25,13 +24,10 @@ public class SignalHandler1Test {
         classUnderTest.handleSignal(1);
         //then
         Mockito.verify(algo).setAlgoParam(1, 60);
-
         Mockito.verify(algo).setUp();
         Mockito.verify(algo).performCalc();
         Mockito.verify(algo).submitToMarket();
         Mockito.verify(algo).doAlgo();
         Mockito.verifyNoMoreInteractions(algo);
-
     }
-
 }
