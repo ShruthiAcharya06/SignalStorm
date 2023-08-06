@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SignalHandlerThree implements SignalHandler {
+public class SignalHandler3 implements SignalHandler {
 
     private static final Integer PARAM_TYPE_1_1 = 1;
 
@@ -18,7 +18,7 @@ public class SignalHandlerThree implements SignalHandler {
 
     private final Algo algo;
 @Autowired
-    public SignalHandlerThree(Algo algo) {
+    public SignalHandler3(Algo algo) {
         this.algo = algo;
     }
 

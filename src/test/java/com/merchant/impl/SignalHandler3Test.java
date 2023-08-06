@@ -1,35 +1,34 @@
 package com.merchant.impl;
 
 import com.merchant.algo.Algo;
-import com.merchant.impl.SignalHandlerTwo;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-public class SignalHandlerTwoTest {
+public class SignalHandler3Test {
     @Mock
     private Algo algo;
 
-    private SignalHandlerTwo classUnderTest;
+    private SignalHandler3 classUnderTest;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        classUnderTest = new SignalHandlerTwo(algo);
+        classUnderTest = new SignalHandler3(algo);
     }
 
     @Test
-    public void testAlgoForSignalTwo() {
+    public void testAlgoForSignalThree() {
         //when
-        classUnderTest.handleSignal(2);
+        classUnderTest.handleSignal(3);
         //then
-        Mockito.verify(algo).setAlgoParam(1, 80);
-
-        Mockito.verify(algo).submitToMarket();
+        Mockito.verify(algo).setAlgoParam(1, 90);
+        Mockito.verify(algo).setAlgoParam(2, 15);
         Mockito.verify(algo).doAlgo();
-        Mockito.verify(algo).reverse();
+        Mockito.verify(algo).performCalc();
+        Mockito.verify(algo).submitToMarket();
         Mockito.verifyNoMoreInteractions(algo);
 
     }

@@ -1,14 +1,13 @@
 package com.merchant.impl;
 
 import com.merchant.algo.Algo;
-import com.merchant.impl.DefaultSignalHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-public class DefaultSignalHandlerThreeTest {
+public class DefaultSignalHandlerTest {
     @Mock
     private Algo algo;
 

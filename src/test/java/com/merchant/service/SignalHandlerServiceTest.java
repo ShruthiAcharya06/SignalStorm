@@ -1,39 +1,54 @@
 package com.merchant.service;
 
-import com.merchant.SignalManagerFactory;
+import com.merchant.algo.Algo;
 import com.merchant.algo.SignalHandler;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest
 public class SignalHandlerServiceTest {
-    @Mock
-    private SignalManagerFactory signalManagerFactory;
+
+    @MockBean
+    private Algo algo;
+
     @Mock
     private SignalHandler signalHandler;
+
+    @Mock
+    private ApplicationContext applicationContext;
+
     private SignalHandlerService classUnderTest;
 
-    @Before
+    @BeforeEach
     public void setup() {
-        MockitoAnnotations.initMocks(this);
-        classUnderTest = new SignalHandlerService(signalManagerFactory);
+        when(applicationContext.getBean("signalHandler1", SignalHandler.class)).thenReturn(signalHandler);
+        when(applicationContext.getBean("signalHandler10", SignalHandler.class)).thenThrow(NoSuchBeanDefinitionException.class);
+        classUnderTest = new SignalHandlerService(applicationContext, algo);
     }
 
     @Test
-    public void testSignalService() {
-        //given
-        when(signalManagerFactory.create(1)).thenReturn(signalHandler);
+    public void testSignalServiceWithValidSignal() {
         //when
         classUnderTest.handleSignal(1);
-
         //then
-        Mockito.verify(signalManagerFactory).create(1);
-        Mockito.verify(signalHandler).handleSignal(1);
-        Mockito.verifyNoMoreInteractions(signalManagerFactory, signalHandler);
+        verify(signalHandler).handleSignal(1);
+
     }
 
+    @Test
+    public void testSignalServiceWithInValidSignal() {
+        //when
+        classUnderTest.handleSignal(10);
+        //then
+        verify(algo).cancelTrades();
+        verify(algo).doAlgo();
+    }
 }

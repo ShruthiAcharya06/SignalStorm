@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SignalHandlerOne implements SignalHandler {
+public class SignalHandler1 implements SignalHandler {
 
     private static final Integer PARAM_TYPE_1 = 1;
 
@@ -15,7 +15,7 @@ public class SignalHandlerOne implements SignalHandler {
     private final Algo algo;
 
     @Autowired
-    public SignalHandlerOne(Algo algo) {this.algo = algo;}
+    public SignalHandler1(Algo algo) {this.algo = algo;}
 
     @Override
     public void handleSignal(int signal) {
